@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Movie App</title>
+</head>
+
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="container-fluid">
+                <div class="navbar__header">
+                    <a class="navbar__title" href="index.html">MovieApp</a>
+                </div>
+                <ul class="navbar__list">
+                    <li class="navbar__item navbar__item--active">
+                        <a class="navbar__item--link" href="#">Home</a>
+                    </li>
+                    <li class="navbar__item">
+                        <a class="navbar__item--link" href="#">Explore</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <section class="container movie">
+            <h2 class="movie__section">Latest</h2>
+            <article class="movie__list latest__movie"> </article>
+        </section>
+        <section class="container movie">
+            <h2 class="movie__section">Trending</h2>
+            <article class="movie__list trending__movie">
+            </article>
+        </section>
+        <section class="container movie">
+            <h2 class="movie__section">Most Watched</h2>
+            <article class="movie__list popular__movie">
+            </article>
+        </section>
+
+        <section class="quick-modal" role="dialog">
+        </section>
+    </main>
+    <!-- <script type="module" src="js/index.js"></script> -->
+    <!-- <script type="module" src="js1/apii.js"></script> -->
+    <script type="module" src="js/api.js"></script>
+</body>
+
+</html>

@@ -2,19 +2,25 @@
 import { API_KEY, IMAGE_URL } from './api.js';
 import { rating } from './rating.js';
 
-export let quick = () => {
+export const quick = () => {
     let qView = document.querySelector(".quick-modal");
     document.querySelectorAll('.movie__card--image').forEach(item => {
         item.addEventListener('click', event => {
             let id = item.id;
             qView.setAttribute("style", "display:block");
             quickInfo(id);
+
+            let close = document.querySelector(".quick-modal");
+            close.addEventListener("click", event => {
+                qView.setAttribute("style", "display:none");
+            })
         })
-        document.querySelector(".quick-modal").addEventListener("click", event => { document.querySelector(".quick-modal").setAttribute("style", "display:none") })
+
     })
+
 }
 
-let getName = (genres) => {
+const getName = (genres) => {
     let genresName = [];
     genres.forEach((ele, index) => {
         genresName.push(ele.name);
@@ -23,7 +29,7 @@ let getName = (genres) => {
 }
 
 
-let getCast = (cast) => {
+const getCast = (cast) => {
     let castNames = [];
     cast.forEach((ele, index) => {
         castNames.push(ele.name)
@@ -32,7 +38,7 @@ let getCast = (cast) => {
 }
 
 
-let directName = (crew) => {
+const directName = (crew) => {
     let dname = '';
     crew.forEach(ele => {
         if (ele.job === "Director") {
@@ -42,8 +48,7 @@ let directName = (crew) => {
     })
     return dname;
 }
-
-let quickInfo = (id) => {
+const quickInfo = (id) => {
     let movie_id = id;
     const MOVIE_DATA = `https://api.themoviedb.org/3/movie/${movie_id}?api_key=${API_KEY}&language=en-US&append_to_response=credits`;
     fetch(MOVIE_DATA)
@@ -51,12 +56,11 @@ let quickInfo = (id) => {
             return response.json()
         })
         .then(data => {
-            console.log(data);
             document.querySelector(".quick-modal").innerHTML = quickView(data);
         })
 }
 
-let quickView = (movie) => {
+const quickView = (movie) => {
     let popup = '';
     let movie_rating = rating(Math.floor(movie.vote_average / 2))
     let genres_name = getName(movie.genres);
@@ -66,7 +70,7 @@ let quickView = (movie) => {
                 <div class="quick-movie">
                 <header class="quick-movie__header">
                 <h2 class="quick-movie__title">${movie.original_title}</h2>
-                <span class="quick-movie__close">&times;</span>
+                <span class="quick-movie__close close">&times;</span>
             </header>
             <div class="quick-movie__detail">
                 <figure class="quick-movie__figure">

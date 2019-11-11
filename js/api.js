@@ -1,4 +1,5 @@
 import { movieData } from './card.js';
+import { quick } from './quickView.js';
 
 export const API_KEY = 'fba43c342279eb0dfa82ccbac547f06d';
 
@@ -12,8 +13,6 @@ const POPULAR_MOVIES = `https://api.themoviedb.org/3/movie/popular?api_key=${API
 
 const GENRES = `https://api.themoviedb.org/3/genre/movie/list?api_key=${API_KEY}&language=en-US`;
 
-
-
 const fetchAll = (url, index) => {
     fetch(url)
         .then(response => {
@@ -21,10 +20,10 @@ const fetchAll = (url, index) => {
         })
         .then(data => {
             document.getElementsByClassName('movie__list')[index].innerHTML = movieData(data);
+            quick();
         })
 }
-
-
+    
 fetchAll(LATEST_MOVIES, 0);
 fetchAll(TRENDING_MOVIES, 1);
 fetchAll(POPULAR_MOVIES, 2);

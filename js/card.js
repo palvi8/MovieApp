@@ -1,15 +1,14 @@
 import { rating } from './rating.js';
 import { getGenres } from './get-genres.js';
 import { IMAGE_URL } from './api.js';
-import { quick } from './quickView.js';
 
-let movieData = (data) => {
+let movieData = (data,idx) => {
     let template = '';
     let movies = data.results;
 
     movies.map((movie, index) => {
         let m_rate = rating(Math.floor(movie.vote_average / 2));
-        let genresName = getGenres(movie.genre_ids, index);
+        let genresName = getGenres(movie.genre_ids, index);        
         if (index < 4) {
             template += `
             <div class="movie__card" id=${movie.id}>
@@ -23,7 +22,7 @@ let movieData = (data) => {
                                     ${(movie.popularity > 200) ? `<i class="fa fa-heart red" aria-hidden="true"></i>` : `<i class="fa fa-heart-o" aria-hidden="true"></i>`}
                                 </span>
                             </header>
-                            <summary class="movie__card--description">${genresName}</summary>
+                            <summary class="movie__card--description">${genresName} </summary>
                             <footer class="movie__card--footer">
                                 <span class="movie_rating">
                                    
@@ -36,10 +35,7 @@ let movieData = (data) => {
         `
         }
     })
-    quick();
     return template;
 }
-
-
 
 export { movieData }

@@ -1,3 +1,5 @@
+@import url("variable.css");
+
 .heading{
     margin: 2% 1%;
     font-size: 1.7em;
@@ -9,8 +11,8 @@
     background-position: center 25%;
 }
 .movie-detail{
-    display: flex;
-    flex-direction: row;
+    display: var(--display-flex);
+    flex-direction: var(--flex-row-direction);
     margin: 4% auto;
     justify-content: space-between;
 }
@@ -31,7 +33,7 @@
 }
 .category__item {
     border-bottom: 2px solid #dcdcdc;
-    display: flex;
+    display: var(--display-flex);
     padding: 3%;
 }
 .category__item:last-child{
@@ -46,6 +48,22 @@
 }
 
 .movie__related{
-    display: flex;
-    margin: 0px auto;
+    display: var(--display-flex);
+    margin: var(--element-center);
+}
+@media screen and (max-width:800px){
+    .movie-detail{
+        flex-wrap: wrap;
+    }
+    .movie-detail__description {
+        width: 100%;
+        padding: 2%;
+    }
+    .movie-detail__categories {
+        width: 100%;
+        margin: 2%;
+    }
+        .movie__related {
+        flex-wrap: wrap;
+    }
 }

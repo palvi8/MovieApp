@@ -1,21 +1,25 @@
+@import url("variable.css");
+
 *{
     margin:0;
     padding: 0;
 }
 body{
-    font-size: 15px;
-    font-family: sans-serif;
-    width: 95%;
-    margin: 2% auto;
-    border: 1px solid #222222;
-    padding-bottom: 2%;
+    font-family: sans-serif;   
 }
+
 a{
     text-decoration: none;
     color:#333;
 }
 ul{
     list-style: none;
+}
+.main{
+    width: 95%;
+    margin: 0 auto;
+    border: 1px solid #222222;
+    padding-bottom: 2%;
 }
 .yellow{
     color:#FF9800;
@@ -28,11 +32,11 @@ ul{
 }
 .container{
     width: 90%;
-    margin: 0 auto;
+    margin: var(--element-center);
 }
 .container-fluid{
     width: 100%;
-    margin:0 auto;
+    margin: var(--element-center);
 }
 .navbar{
     position: relative;
@@ -48,8 +52,8 @@ ul{
     float: left;
     padding: 15px 75px;
     font-size: 18px;
-    line-height: 20px;
-    color:#fff;
+    line-height: 16px;
+    color:var(--text-white);
 }
 .navbar__list{
     list-style: none;
@@ -57,11 +61,11 @@ ul{
 .navbar__item{
 display: inline-flex;
 padding: 15px 30px;
-color:#fff;
-font-size: 15px;
+color: var(--text-white);
+font-size: 0.98em;
 }
 .navbar__item--link{
-    color:#fff;
+    color:var(--text-white);
 }
 .movie{
     margin-top:2%;
@@ -71,9 +75,8 @@ font-size: 15px;
     font-size: 1.7em;
 }
 .movie__list {
-    display: flex;
-    /*flex-wrap: wrap;*/
-    margin: 0px auto;       
+    display: var(--display-flex);
+    margin: var(--element-center);       
 }
 .movie__card{
     border:1px solid #d4d0d0;
@@ -81,11 +84,11 @@ font-size: 15px;
     margin: 0 1%;
 }
 .movie__card--title {
-    font-size: 15px;
+    font-size: 0.9em;
     font-weight: 600;
 }
 .movie__card--description {
-    font-size: 12px;
+    font-size: 0.8em;
 }
 .movie__card--image {
     width: 100%;
@@ -99,18 +102,18 @@ font-size: 15px;
     line-height: 25px;
 }
 .movie__card--header{
-    display: flex;
-    flex-direction: row;
+    display: var(--display-flex);
+    flex-direction: var(--flex-row-direction);
     justify-content: space-between;
 }
 .movie__card--view {
     color: blue;
-    font-size: 13px;
+    font-size: 0.8em;
     text-decoration: underline;
 }
 .movie__card--footer{
-    display: flex;
-    flex-direction: row;
+    display: var(--display-flex);
+    flex-direction: var(--flex-row-direction);
     justify-content: space-between;
 }
 
@@ -127,15 +130,15 @@ font-size: 15px;
 }
 
 .quick-movie {
-    background: #fff;
-    width: 45em;
+    background: var(--bg-white);
+    width: 50%;
     margin: 5em auto;
     border-radius: 5px;
     z-index: 10;
 }
 .quick-movie__header {
-    display: flex;
-    flex-direction: row;
+    display: var(--display-flex);
+    flex-direction: var(--flex-row-direction);
     justify-content: space-between;
     border-bottom: 1px solid #e3e3e3;
     padding: 3% 3%;
@@ -144,8 +147,8 @@ font-size: 15px;
     cursor: pointer;
 }
 .quick-movie__detail {
-    display: flex;
-    flex-direction: row;
+    display: var(--display-flex);
+    flex-direction: var(--flex-row-direction);
     padding-left: 3%;
     padding-top: 3%;
 }
@@ -160,7 +163,7 @@ font-size: 15px;
 .quick-movie__detail > summary {
     width: 60%;
     padding: 0 2%;
-    font-size: 0.9em;
+    font-size: var(--modal-text-size);
     line-height: 20px;
 }
 
@@ -170,25 +173,51 @@ font-size: 15px;
 }
 
 .quick-movie__list--item{
-    display:flex;
+    display: var(--display-flex);
     line-height: 30px;
 }
 .quick-movie__list--item > h4 {
     width: 15%;
+    font-size: var(--modal-text-size);
 }
 
-@media screen and (max-width:786px){
+.quick-movie__list--item > span {
+    font-size: var(--modal-text-size);
+}
+
+@media screen and (max-width:800px){
 	.container{
     width: 100%;
-    margin: 0 auto;
+    margin: var(--element-center);
 }
 .movie__list {
-    display: flex;
-    margin: 0 auto;
+    display: var(--display-flex);
+    margin: var(--element-center);
     flex-wrap: wrap;
 }
 .movie__card{
     width:45%;
     margin:2% 2%;
 }
+}
+
+@media screen and (max-width:640px) and (min-width:320px){
+    .navbar__title {
+        padding: 15px 25px;
+    }
+    .movie__card{
+    width:100%;
+    }
+    .movie__section {
+    margin: 2% 2%;
+    font-size: 1.4em;
+    }
+    .quick-movie {
+    width: 90%;
+    margin: 2em auto;
+    }
+    .quick-movie__title {
+    font-size: 1.2em;
+    }
+
 }

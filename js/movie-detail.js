@@ -4,7 +4,6 @@ import { relatedApi } from './related-movies.js';
 
 const url = new URLSearchParams(window.location.search);
 let movie_id = url.get("id");
-
 const MOVIE_DETAIL = `https://api.themoviedb.org/3/movie/${movie_id}?api_key=${API_KEY}&language=en-US&append_to_response=credits`;
 
 (function () {
@@ -17,7 +16,7 @@ const MOVIE_DETAIL = `https://api.themoviedb.org/3/movie/${movie_id}?api_key=${A
         })
 })();
 
-let getName = (genres) => {
+const getName = (genres) => {
     let genresName = [];
     genres.forEach((ele, index) => {
         genresName.push(ele.name);
@@ -25,7 +24,7 @@ let getName = (genres) => {
     return genresName;
 }
 
-let getCast = (cast) => {
+const getCast = (cast) => {
     let castNames = [];
     cast.forEach((ele, index) => {
         castNames.push(ele.name)
@@ -34,7 +33,7 @@ let getCast = (cast) => {
 }
 
 
-let directName = (crew) => {
+const directName = (crew) => {
     let dname = '';
     crew.forEach(ele => {
         if (ele.job === "Director") {
@@ -46,15 +45,16 @@ let directName = (crew) => {
 }
 
 let detail_template = '';
-let movieDetails = (movie) => {
-    //console.log(movie);
+const movieDetails = (movie) => {
     let movie_rating = rating(Math.floor(movie.vote_average / 2))
     let genres_name = getName(movie.genres);
     let cast_name = getCast(movie.credits.cast.slice(0, 5));
     let director_name = directName(movie.credits.crew)
 
     detail_template = `
-        <section class="movie-detail__banner" style="background-image:url(${IMAGE_URL + movie.backdrop_path})"></section>
+        <section class="movie-detail__banner" style="background-image:url(${IMAGE_URL + movie.backdrop_path})">
+            
+        </section>
 			<section class="movie-detail container">
 				<article class="movie-detail__description">
 					<h2 class="heading">${movie.original_title}</h2>

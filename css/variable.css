@@ -1,0 +1,8 @@
+:root {
+    --bg-white : #ffffff;
+    --text-white: #ffffff;
+    --element-center: 0 auto;
+    --display-flex: flex;
+    --flex-row-direction: row;
+    --modal-text-size: 0.9em;
+}    

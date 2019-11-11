@@ -3,13 +3,12 @@ import { rating } from './rating.js';
 import { getGenres } from './get-genres.js';
 
 const current_url = new URLSearchParams(window.location.search);
-//console.log(current_url);
+
 let movie_id = current_url.get("id");
-//console.log(movie_id);
 
 const SIMILAR_MOVIES = `https://api.themoviedb.org/3/movie/${movie_id}/similar?api_key=${API_KEY}&language=en-US&page=1`;
 
-export function relatedApi() {
+export const relatedApi = () => {
     fetch(SIMILAR_MOVIES)
         .then(response => {
             return response.json();
@@ -20,7 +19,7 @@ export function relatedApi() {
 };
 
 let relatedTemplate = '';
-let relatedMovies = (movies) => {
+const relatedMovies = (movies) => {
     //console.log(movies);
     movies = movies.results;
     movies.forEach((movie, index) => {

@@ -1,4 +1,4 @@
-export function rating(i){
+export const rating = (i) => {
 return `<i class="fa ${i >= 1 ? 'fa-star yellow' : 'fa-star-o'}"></i>
             <i class="fa ${i >= 2 ? 'fa-star yellow' : 'fa-star-o'}"></i>
             <i class="fa ${i >= 3 ? 'fa-star yellow' : 'fa-star-o'}"></i>

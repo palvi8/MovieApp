@@ -1,15 +1,20 @@
-@import url("variable.css");
+@import url("./variable.css");
+@import url("./reset.css");
 
 .heading{
     margin: 2% 1%;
     font-size: 1.7em;
 }
 .movie-detail__banner{
-    padding: 15%;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center 25%;
+    width: 100%;
+    position: relative;
 }
+.movie-detail__banner--image{
+    width: 100%;
+    height: calc(70vh - 37px);
+    object-fit: cover;
+}
+
 .movie-detail{
     display: var(--display-flex);
     flex-direction: var(--flex-row-direction);
@@ -42,10 +47,17 @@
 .category__item--heading{
     width:20%;
 }
+.category__item .cast{
+    margin-left: 13%;
+}
 .category__item--detail {
-    font-size: 0.9em;
+    font-size: 0.8em;
     line-height: 20px;
 }
+a.category__item--detail:hover{
+    color:#787878;
+}
+
 
 .movie__related{
     display: var(--display-flex);

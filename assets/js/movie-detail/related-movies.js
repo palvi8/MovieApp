@@ -1,6 +1,8 @@
-import { API_KEY, IMAGE_URL } from './api.js';
-import { rating } from './rating.js';
-import { getGenres } from './get-genres.js';
+import { API_KEY, IMAGE_URL } from '../movies-api.js';
+import { rating, likedMovie } from '../movie-rating/movie-rating.js';
+import { getGenres } from '../movie-genres/get-genres.js';
+
+
 
 const current_url = new URLSearchParams(window.location.search);
 
@@ -8,19 +10,22 @@ let movie_id = current_url.get("id");
 
 const SIMILAR_MOVIES = `https://api.themoviedb.org/3/movie/${movie_id}/similar?api_key=${API_KEY}&language=en-US&page=1`;
 
-export const relatedApi = () => {
+export const loadRelatedMovies = () => {
     fetch(SIMILAR_MOVIES)
         .then(response => {
             return response.json();
         })
         .then(data => {
             document.querySelector('.movie__related').innerHTML = relatedMovies(data);
+            likedMovie();
+        })
+        .catch(err =>{
+            console.log(err);
         })
 };
 
 let relatedTemplate = '';
 const relatedMovies = (movies) => {
-    //console.log(movies);
     movies = movies.results;
     movies.forEach((movie, index) => {
         let m_rate = rating(Math.floor(movie.vote_average / 2));

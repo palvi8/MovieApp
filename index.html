@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <!-- <link rel="import" id="movie-card" href="./templates/movie-card.html"> -->
     <title>Movie App</title>
 </head>
 
@@ -45,9 +46,35 @@
         </section>
 
         <section class="quick-modal" role="dialog">
+            <div id="quick-preview">
+                <div class="quick-movie">
+                    <header class="quick-movie__header">
+                        <h2 class="quick-movie__title"></h2>
+                        <span class="quick-movie__close close">&times;</span>
+                    </header>
+                    <div class="quick-movie__detail">
+                        <figure class="quick-movie__figure">
+                            <img class="quick-movie__figure--img" src="" alt="" title="">
+                        </figure>
+                        <summary class="quick-movie__summary"></summary>
+                    </div>
+                    <ul class="quick-movie__list">
+                        <li class="quick-movie__list--item">
+                            <h4>Genre:</h4> <span class="quick-movie__list--genres"></span></li>
+                        <li class="quick-movie__list--item">
+                            <h4>Cast:</h4> <span class="quick-movie__list--cast">${cast_name}</span></li>
+                        <li class="quick-movie__list--item">
+                            <h4>Director:</h4> <span class="quick-movie__list--director">${director_name}</span></li>
+                        <li class="quick-movie__list--item">
+                            <h4>Rating:</h4>
+                            <span class="quick-movie__list--rating">${movie_rating}</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </section>
     </main>
-    <script type="module" src="js/api.js"></script>
+    <script type="module" src="./assets/js/movies-api.js"></script>
 </body>
 
 </html>

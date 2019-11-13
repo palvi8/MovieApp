@@ -1,4 +1,4 @@
-import { GENRES } from './api.js';
+import { GENRES } from '../movies-api.js';
 
 export const getGenres = (gId, index) => {
     fetch(GENRES)
@@ -20,5 +20,5 @@ const getGenresName = (data, ids) => {
             }
         })
     })
-    return genresNames;
+    return genresNames.slice(0,3);
 }

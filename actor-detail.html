@@ -24,7 +24,7 @@
                             <a class="navbar__item--link" href="index.html">Home</a>
                         </li>
                         <li class="navbar__item">
-                            <a class="navbar__item--link" href="#">Explore</a>
+                            <a class="navbar__item--link" href="movie-search.html">Explore</a>
                         </li>
                     </ul>
                 </div>
@@ -50,9 +50,30 @@
                 </figcaption>
             </article>
         </section>
+
         <section class="filmography container">
             <h2>Filmography</h2>
-            <div class="film"></div>
+
+            <div id="filmPanel">
+            </div>
+
+            <template id="filmList">
+                <div class="list movie-panel">
+                    <h3 class="movie-panel__heading">
+                        <span class="release_year"></span>
+                    </h3>
+                </div>
+            </template>
+
+            <template id="panelBody">
+                <div class="list">
+                    <ul class="movie-panel__list">
+                        <li class="movie-panel__item">Title : <span class="movie-panel__item--title title">Movie 1</span></li>
+                        <li class="movie-panel__item">Year : <span class="movie-panel__item--title date">2014</span></li>
+                        <li class="movie-panel__item">Character : <span class="movie-panel__item--title character">Xyz</span></li>
+                    </ul>
+                </div>
+            </template>
         </section>
     </main>
 </body>

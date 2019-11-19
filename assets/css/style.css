@@ -81,6 +81,8 @@ font-size: 0.98em;
 }
 .movie__card--description {
     font-size: 0.8em;
+    word-break: break-all;
+    text-transform: capitalize;
 }
 .movie__card--image {
     width: 100%;
@@ -179,6 +181,7 @@ font-size: 0.98em;
 .quick-movie__list--item > span {
     font-size: var(--modal-text-size);
 }
+
 
 @media screen and (max-width:800px){
 	.container{

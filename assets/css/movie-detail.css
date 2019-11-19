@@ -15,6 +15,17 @@
     object-fit: cover;
 }
 
+.movie-detail__banner--btn{
+    position: absolute;
+    bottom: 10%;
+    right: 1%;
+    background: var(--text-white);
+    border-radius: 1.25rem;
+    color: var(--text-black);
+    font-size: 1em;
+    border: 1px solid var(--grey-background);
+    padding: 1.2rem;
+}
 .movie-detail{
     display: var(--display-flex);
     flex-direction: var(--flex-row-direction);
@@ -79,3 +90,4 @@ a.category__item--detail:hover{
         flex-wrap: wrap;
     }
 }
+

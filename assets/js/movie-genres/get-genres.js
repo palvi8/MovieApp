@@ -1,24 +1,22 @@
-import { GENRES } from '../movies-api.js';
 
-export const getGenres = (gId, index) => {
-    fetch(GENRES)
-        .then(response => {
-            return response.json();
-        })
-        .then(genresData => {
-            genresData = genresData.genres;
-            document.querySelectorAll('.movie__card--description')[index].innerHTML = getGenresName(genresData, gId)
-        })
-}
 
-const getGenresName = (data, ids) => {
-    let genresNames = [];
-    data.forEach(elements => {
-        ids.forEach(id => {
-            if (id == elements.id) {
-                genresNames.push(elements.name)
-            }
-        })
+var retrieveGenres = localStorage.getItem("genresData");
+var localGenres = JSON.parse(retrieveGenres);
+
+export var  getGenres = {
+    getGName : (genID) => {
+    let gNames = [];
+    localGenres.forEach(item => {
+        if (genID) {
+            genID.forEach(ids => {
+                if (ids == item.id) {
+                    gNames.push(item.name.toLowerCase());
+
+                }
+            })
+        }
+
     })
-    return genresNames.slice(0,3);
+    return gNames;
+}
 }

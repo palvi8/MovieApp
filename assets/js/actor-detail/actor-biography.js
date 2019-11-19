@@ -1,28 +1,27 @@
-import { IMAGE_URL, API_KEY } from '../movies-api.js';
-import { filmoGraphy } from './actor-filmography.js';
+import { IMAGE_URL, api } from '../variable.js';
+import { filmDetail } from './actor-filmography.js';
 
 const url = new URLSearchParams(window.location.search);
 const ACTOR_ID = url.get("id");
-const ACTOR_DETAIL =  `https://api.themoviedb.org/3/person/${ACTOR_ID}?api_key=${API_KEY}&language=en-US`;
 
-(function  (){
-    fetch(ACTOR_DETAIL)
-    .then(response => {
-        return response.json();
-    })
-    .then(data => {
-        actorBiography(data);
-    })
-    .catch(err =>{
-        console.log(err);
-    })
+(function () {
+    fetch(api.ACTOR_DETAIL(ACTOR_ID))
+        .then(response => {
+            return response.json();
+        })
+        .then(data => {
+            actorBiography(data);
+        })
+        .catch(err => {
+            console.log(err);
+        })
 })();
 
-const actorBiography = (data) =>{
+const actorBiography = (data) => {
 
     var actorProfile = document.querySelector(".actor-profile");
     var actorImg = document.querySelector(".actor-profile__figure > img");
-    actorImg.setAttribute("src", IMAGE_URL+ data.profile_path);
+    actorImg.setAttribute("src", IMAGE_URL + data.profile_path);
     actorImg.setAttribute("alt", data.name);
     actorImg.setAttribute("title", data.name);
 
@@ -40,5 +39,4 @@ const actorBiography = (data) =>{
 
 }
 
-
-filmoGraphy();
+filmDetail.filmoGraphy();

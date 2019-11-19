@@ -24,7 +24,7 @@
 							<a class="navbar__item--link" href="index.html">Home</a>
 						</li>
 						<li class="navbar__item">
-							<a class="navbar__item--link" href="#">Explore</a>
+							<a class="navbar__item--link" href="movie-search.html">Explore</a>
 						</li>
 					</ul>
 				</div>
@@ -34,6 +34,7 @@
 		<div class="current-movie">
 			<section class="movie-detail__banner">
 				<img class="movie-detail__banner--image">
+				<button class="movie-detail__banner--btn">Mark as favorite <i class="fa fa-heart"></i></button>
 			</section>
 			<section class="movie-detail container">
 				<article class="movie-detail__description">
@@ -66,9 +67,56 @@
 		</div>
 		<section class="container movie">
 			<h2 class="movie__section">Related Movies</h2>
-			<article class="movie__related">
-
+			<article class="movie__related movie__list">
 			</article>
+		</section>
+		<template id="movie-card">
+			<div class="movie__card">
+				<figure>
+					<img class="movie__card--image">
+				</figure>
+				<div class="movie__card--body">
+					<header class="movie__card--header">
+						<h4 class="movie__card--title"></h4>
+						<span class="movie__card--like"><i class="fa fa-heart-o"></i></span>
+					</header>
+					<summary class="movie__card--description"></summary>
+					<footer class="movie__card--footer">
+						<span class="movie_rating">
+                           
+                        </span>
+						<a class="movie__card--view">Show more</a>
+					</footer>
+				</div>
+			</div>
+		</template>
+		<section class="quick-modal" role="dialog">
+			<div id="quick-preview">
+				<div class="quick-movie">
+					<header class="quick-movie__header">
+						<h2 class="quick-movie__title"></h2>
+						<span class="quick-movie__close close">&times;</span>
+					</header>
+					<div class="quick-movie__detail">
+						<figure class="quick-movie__figure">
+							<img class="quick-movie__figure--img" src="" alt="" title="">
+						</figure>
+						<summary class="quick-movie__summary"></summary>
+					</div>
+					<ul class="quick-movie__list">
+						<li class="quick-movie__list--item">
+							<h4>Genre:</h4> <span class="quick-movie__list--genres"></span></li>
+						<li class="quick-movie__list--item">
+							<h4>Cast:</h4> <span class="quick-movie__list--cast">${cast_name}</span></li>
+						<li class="quick-movie__list--item">
+							<h4>Director:</h4> <span class="quick-movie__list--director">${director_name}</span></li>
+						<li class="quick-movie__list--item">
+							<h4>Rating:</h4>
+							<span class="quick-movie__list--rating">${movie_rating}</span>
+						</li>
+					</ul>
+				</div>
+			</div>
 		</section>
 	</main>
 </body>

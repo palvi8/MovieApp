@@ -1,39 +1,38 @@
-import { rating } from './movie-rating/movie-rating.js';
+import { general } from './general-functions/general-functions.js';
+import { IMAGE_URL } from './variable.js';
 import { getGenres } from './movie-genres/get-genres.js';
-import { IMAGE_URL } from './movies-api.js';
 
-export const movieData = (data,idx) => {
-    var cardTemplate = '';
-    var movies = data.results;
+export var card = {
+    movieData : (data, idx = 0, items) => {
+    let movieCard = document.getElementById("movie-card");
+    let movieList = document.querySelectorAll('.movie__list')[idx];
+    let movie = data.slice(0, items);
 
-    movies.forEach((movie, index) => {        
-        var genresName = getGenres(movie.genre_ids, index); 
-        var movieRating = rating(Math.floor(movie.vote_average / 2));
-        if(index < 4 ){
-            cardTemplate += `
-            <div class="movie__card" id=${movie.id}>
-                <figure> 
-                    <img id=${movie.id} class="movie__card--image" src="${IMAGE_URL + movie.poster_path}">
-                </figure>
-                <div class="movie__card--body">
-                    <header class="movie__card--header">
-                        <h4 class="movie__card--title">${movie.title}</h4>
-                        <span class="movie__card--like"><i class="fa fa-heart-o"></i></span>
-                    </header>
-                    <summary class="movie__card--description">${genresName} </summary>
-                    <footer class="movie__card--footer">
-                        <span class="movie_rating">
-                            ${movieRating}
-                        </span>
-                        <a class="movie__card--view" href="movie-detail.html?id=${movie.id}">Show more</a>
-                    </footer>
-                </div>
-            </div>
-        `
+    movie.forEach((movie, index) => {
+        if (movie.id) {
+
+            var genresName = getGenres.getGName(movie.genre_ids);
+            var movieRating = general.loadRating(Math.floor(movie.vote_average / 2));
+            var clone = document.importNode(movieCard.content, true);
+
+            var cardImage = clone.querySelector(".movie__card--image");
+            cardImage.setAttribute("id", movie.id);
+            cardImage.setAttribute("src", IMAGE_URL + movie.poster_path);
+            cardImage.setAttribute("alt", movie.title);
+            cardImage.setAttribute("title", movie.title);
+
+            clone.querySelector(".movie__card--title").textContent = movie.title;
+            clone.querySelector(".movie__card--description").textContent = genresName;
+            clone.querySelector(".movie_rating").innerHTML = movieRating;
+            clone.querySelector(".movie__card--view").setAttribute("href", `movie-detail.html?id=${movie.id}`);
+
+            movieList.appendChild(clone);
         }
+
     })
 
-    return cardTemplate;
-
 }
+}
+
+
 

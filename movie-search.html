@@ -7,7 +7,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="./assets/css/style.css">
-    <title>Movie App</title>
+    <link rel="stylesheet" href="./assets/css/search-movie.css"></link>
+    <title>MovieApp</title>
 </head>
 
 <body>
@@ -19,51 +20,42 @@
                         <a class="navbar__title" href="index.html">MovieApp</a>
                     </div>
                     <ul class="navbar__list">
-                        <li class="navbar__item navbar__item--active">
+                        <li class="navbar__item">
                             <a class="navbar__item--link" href="index.html">Home</a>
                         </li>
-                        <li class="navbar__item">
+                        <li class="navbar__item navbar__item--active">
                             <a class="navbar__item--link" href="movie-search.html">Explore</a>
                         </li>
                     </ul>
                 </div>
             </nav>
         </header>
-        <section class="container movie">
-            <h2 class="movie__section">Latest</h2>
-            <article class="movie__list latest__movie"> </article>
-        </section>
-        <section class="container movie">
-            <h2 class="movie__section">Trending</h2>
-            <article class="movie__list trending__movie">
-            </article>
-        </section>
-        <section class="container movie">
-            <h2 class="movie__section">Most Watched</h2>
-            <article class="movie__list popular__movie">
-            </article>
-        </section>
-
-        <template id="movie-card">
-            <div class="movie__card">
-                <figure>
-                    <img class="movie__card--image">
-                </figure>
-                <div class="movie__card--body">
-                    <header class="movie__card--header">
-                        <h4 class="movie__card--title"></h4>
-                        <span class="movie__card--like"><i class="fa fa-heart-o"></i></span>
-                    </header>
-                    <summary class="movie__card--description"></summary>
-                    <footer class="movie__card--footer">
-                        <span class="movie_rating">
-                           
-                        </span>
-                        <a class="movie__card--view">Show more</a>
-                    </footer>
-                </div>
+        <section class="filter container">
+            <div class="search-filter">
+                <input type="search" class="search-filter__input" placeholder="Search for movies,genre..." name="search">
+                <button type="submit" class="search-filter__button"><i class="fa fa-search"></i></button>
             </div>
-        </template>
+            <div class="rating-filter">
+                <div class="range">
+                    <label for="movie-rating">Movie Rating</label>
+                    <input class="range__input rating-filter__input" type="range" value="3" min="1" max="5" step="1" list="number" name="movie-rating"
+                    />
+                    <datalist class="range__list" id="number">
+                        <option class="range__opt opt0">1</option>
+                        <option class="range__opt">2</option>
+                        <option class="range__opt">3</option>
+                        <option class="range__opt">4</option>
+                        <option class="range__opt">5</option>
+                    </datalist>
+                </div>
+
+            </div>
+        </section>
+        <section class="container movie">
+            <h2 class="movie__section">Results</h2>
+            <article class="movie__results movie__list">
+            </article>
+        </section>
 
         <section class="quick-modal" role="dialog">
             <div id="quick-preview">
@@ -93,8 +85,35 @@
                 </div>
             </div>
         </section>
+
+        <template id="movie-card">
+            <div class="movie__card">
+                <figure>
+                    <img class="movie__card--image">
+                </figure>
+                <div class="movie__card--body">
+                    <header class="movie__card--header">
+                        <h4 class="movie__card--title"></h4>
+                        <span class="movie__card--like"><i class="fa fa-heart-o"></i></span>
+                    </header>
+                    <summary class="movie__card--description"></summary>
+                    <footer class="movie__card--footer">
+                        <span class="movie_rating">
+                        </span>
+                        <a class="movie__card--view">Show more</a>
+                    </footer>
+                </div>
+            </div>
+        </template>
+
+            <div class="not-found">
+                <figure>
+                    <img src="./assets/images/no-image-found.png">
+                </figure>
+            </div>
+
     </main>
-    <script type="module" src="./assets/js/movies-api.js"></script>
 </body>
+<script type="module" src="./assets/js/movie-search/movie-search.js"></script>
 
 </html>

@@ -1,76 +1,63 @@
-import { API_KEY, IMAGE_URL } from '../movies-api.js';
+import { IMAGE_URL, api } from '../variable.js';
 
 const url = new URLSearchParams(window.location.search);
 const ACTOR_ID = url.get("id");
-console.log(ACTOR_ID);
 
-const ACTOR_FILMOGRAPHY =  `https://api.themoviedb.org/3/person/${ACTOR_ID}/movie_credits?api_key=${API_KEY}&language=en-US`;
+export var filmDetail = {
+	filmoGraphy: () => {
+		fetch(api.ACTOR_FILMOGRAPHY(ACTOR_ID))
+			.then(response => {
+				return response.json();
+			})
+			.then(data => {
+				filmDetail.actorFilmography(data);
+			})
+			.catch(err => {
+				console.log(err);
+			})
+	},
 
-export const filmoGraphy = () => {
-    fetch(ACTOR_FILMOGRAPHY)
-    .then(response => {
-        return response.json();
-    })
-    .then(data => {
-            actorFilmography(data);
-    })
-    .catch(err => {
-        console.log(err);
-    })
-}
+	actorFilmography: (actorFilmData) => {
 
+		var panelSection = document.querySelector("#filmPanel");
+		var list = document.querySelector("#filmList");
+		var panelBody = document.querySelector("#panelBody");
 
-let movie_panel = '';
-let releaseDate = [];
-let filmGraphy = [];
+		var releaseYears = [];
+		actorFilmData.cast.forEach(item => {
+			let releaseYear = item.release_date.split('-')[0];
+			if (releaseYears.indexOf(releaseYear) == -1) {
+				releaseYears.push(releaseYear)
+			}
+		})
+		releaseYears = releaseYears.sort().reverse();
 
-let showReleaseDate = [];
-let showfilmDetail = [];
-const actorFilmography = (data) => {
-    data = data.cast;
-    console.log(data);
-    data.forEach(item => {
-        let date = item.release_date;
-        releaseDate.push(date.split("-")[0]);
+		releaseYears.forEach((item, index) => {
+			let cloneList = document.importNode(list.content, true);
+			cloneList.querySelector(".release_year").textContent = item;
+			console.log(item);
+			panelSection.appendChild(cloneList);
 
-        filmGraphy.push({
-            release_date: item.release_date,
-            character : item.character,
-            title: item.title  
-        })
-    })
+			actorFilmData.cast.forEach((ele, index) => {
+				//debugger
+				let year = ele.release_date.split("-")[0];
+				if (item == year) {
+					let clonepanelBody = document.importNode(panelBody.content.querySelectorAll(".movie-panel__list")[0], true);
 
-    console.log(filmGraphy);
-    console.log(releaseDate);
+					clonepanelBody.querySelector(".title").textContent = ele.title;
 
+					clonepanelBody.querySelector(".date").textContent =
+						ele.release_date.split("-");
 
-var uniqueSet = new Set(releaseDate); // Set allow only unique values
-console.log(uniqueSet);
+					clonepanelBody.querySelector(".character").textContent = ele.character;
 
-var backToArray = [...uniqueSet]; //spread convert back to array
-console.log(backToArray);
+					let ln = panelSection.querySelectorAll(".list").length;
+					panelSection.querySelectorAll(".list")[ln - 1].appendChild(clonepanelBody);
 
-var sortDate = backToArray.sort(function(a,b){
-    return b - a
-})
-    console.log("sortData"+sortDate);
-    sortDate.forEach(item => {
-        filmGraphy.forEach(ele =>{
-            if(item == ele.release_date.split("-")[0]){
-                showReleaseDate.push(item);
-                showfilmDetail.push({
+				}
+			})
+		})
 
-                    r_data: ele.release_date,
-                    movie_char: ele.character,
-                    movie_title: ele.title
-                })
-            }
-        })
-        console.log(showReleaseDate);
-        console.log(showfilmDetail);
-    })
-
-
+	}
 
 }
-

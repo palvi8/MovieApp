@@ -1,20 +1,9 @@
-import { movieData } from './movie-card.js';
-import { previewMovie } from './movie-preview.js';
-import { likedMovie } from './movie-rating/movie-rating.js'
+import { api } from './variable.js';
+import { card } from './movie-card.js';
+import { preview } from './movie-preview.js';
+import { general } from './general-functions/general-functions.js';
 
-
-const API_KEY = 'fba43c342279eb0dfa82ccbac547f06d';
-
-const IMAGE_URL = 'https://image.tmdb.org/t/p/original/';
-
-const LATEST_MOVIES = `https://api.themoviedb.org/3/movie/now_playing?api_key=${API_KEY}&language=en-US&include_adult=false`;
-
-const TRENDING_MOVIES = `https://api.themoviedb.org/3/trending/movie/week?api_key=${API_KEY}`;
-
-const POPULAR_MOVIES = `https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}&language=en-US&page=1`;
-
-const GENRES = `https://api.themoviedb.org/3/genre/movie/list?api_key=${API_KEY}&language=en-US`;
-
+var newArray = {};     
 export class LoadMoviesAPI {
 
     fetchMoviesApi = (url, index) => {
@@ -25,9 +14,13 @@ export class LoadMoviesAPI {
         })
         .then(data => {
             // template return to next row 
-            document.getElementsByClassName('movie__list')[index].innerHTML = movieData(data);
-            previewMovie();
-            likedMovie();
+            getGenres();
+            card.movieData(data.results, index, 4);
+            preview.previewMovie();
+            general.likedMovie();
+
+            Array.prototype.push.apply(newArray, data.results);
+            localStorage.setItem('newArray', JSON.stringify(newArray)); 
         })
         .catch(err => {
                 console.log(err);
@@ -36,9 +29,35 @@ export class LoadMoviesAPI {
 }
 
 var movieDetail = new LoadMoviesAPI();
+movieDetail.fetchMoviesApi(api.LATEST_MOVIES(), 0);
+movieDetail.fetchMoviesApi(api.TRENDING_MOVIES(), 1);
+movieDetail.fetchMoviesApi(api.POPULAR_MOVIES(), 2);
 
-movieDetail.fetchMoviesApi(LATEST_MOVIES, 0);
-movieDetail.fetchMoviesApi(TRENDING_MOVIES, 1);
-movieDetail.fetchMoviesApi(POPULAR_MOVIES, 2);
 
-export { GENRES, IMAGE_URL, API_KEY }
+export const getGenres = () => {
+    fetch(api.GENRES())
+        .then(response => {
+            return response.json();
+        })
+        .then(genresData => {
+            genresData = genresData.genres;
+            localStorage.setItem('genresData', JSON.stringify(genresData));
+            
+        })
+}
+
+export const movieInfo = (id) => {
+    let movie_id = id;
+    fetch( api.MOVIE_DETAIL(movie_id) )
+        .then(response => {
+            return response.json()
+        })
+        .then(data => {
+            preview.quickView(data);
+        })
+        .catch(err => {
+            console.log(err);
+        })
+}
+
+

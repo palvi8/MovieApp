@@ -24,33 +24,37 @@ Application Update History
 
 Date: 30-10-2019.
 Project Version : 1.0.0
-Update Description :1. Create the home page of the Movie Application.
-					2. Home Page will show the details of the movie in card format.
-					3. Movies list divided according to categories.
-                    4. Every card show the image of the movie, rating, title and genre.
+Update Description :
+1. Create the home page of the Movie Application.
+2. Home Page will show the details of the movie in card format.
+3. Movies list divided according to categories.
+4. Every card show the image of the movie, rating, title and genre.
 
 ==========================================================================================================================
 Date: 06-11-2019.
 Project Version : 2.0.0
-Update Description :1. By the click on movie card popup will arrive.
-					2. Popup will show some details about the movie.
-					3. By the click on show more link goes to movie-detail page.
-					4. In movie detail page it will show all the details about the movie.
-					5. In details in will show Summary, Poster, Director Name, Genre, CastNames, Ratings.
-                    6. Also shows some related movies same in the card format. 
+Update Description :
+1. By the click on movie card popup will arrive.
+2. Popup will show some details about the movie.
+3. By the click on show more link goes to movie-detail page.
+4. In movie detail page it will show all the details about the movie.
+5. In details in will show Summary, Poster, Director Name, Genre, CastNames, Ratings.
+6. Also shows some related movies same in the card format. 
 
 ======================================================================================================================
 Date: 13-11-2019.
 Project Version : 3.0.0
-Update Description :1. In the movie Detail page where it shows the cast names by click on it it will goes to cast                        detail page.
-                    2. This page divided into two parts Cast Details(general) and Filmography.
-					3. In general it shows the image of the cast, biography, D.O.B and popularity.
-					4. In Filmography section will show all the movie name and released year which cast has          already done or about to come in the list format.
+Update Description :
+1. In the movie Detail page where it shows the cast names by click on it it will goes to cast detail page.
+2. This page divided into two parts Cast Details(general) and Filmography.
+3. In general it shows the image of the cast, biography, D.O.B and popularity.
+4. In Filmography section will show all the movie name and released year which cast has already done or about to come in the list format.
 
 ======================================================================================================================
 Date: 20-11-2019.
 Project Version : 4.0.0
-Update Description :1. By click on Explore link on the top of the header it will goes to movie search page.
-                    2. In this page we can filter the movie using search filter and by setting th rating.
-					2. We can search the movies with the keyword of movie title and by genre.
-					3. By setting range in the rating filter we'll able to get only that movies which matched by     the given range.
+Update Description :
+1. By click on Explore link on the top of the header it will goes to movie search page.
+2. In this page we can filter the movie using search filter and by setting th rating.
+3. We can search the movies with the keyword of movie title and by genre.
+4. By setting range in the rating filter we'll able to get only that movies which matched by the given range.
